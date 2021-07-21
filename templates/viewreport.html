@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post>
+      <dl>
+        {{ render_field(form.username) }}
+      </dl>
+      <p><input type=submit class="btn btn-primary btn-lg active" value=View>
+    </form>
+    
+    <br>
+    <br>
+    {% if data %}
+    <table class="table table-bordered">
+        <tr>
+            <th>User</th>
+            <th>Recommender</th>
+            <th>Transaction</th>
+            
+          </tr>
+      
+        {% for report in data %}
+          {% if report %}
+            {% for r in report %}
+            <tr>
+              {% for key, value in r.items() %}
+                <td>{{ value }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+          
+      
+    </table>
+    {% endif %}
+{% endblock content %}
